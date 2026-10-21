@@ -62,6 +62,28 @@ if (detail) {
       const artifacts = document.createElement('section'); artifacts.className = 'detail-section';
       const heading = document.createElement('h2'); heading.textContent = '실제 작업물'; artifacts.append(heading);
       const note = document.createElement('p'); note.textContent = '① Vercel AI 기반 의무기록 요약 MVP 화면  ② 사용자에게 제공한 PDF 요약본 예시. 공개 가능한 비식별 자료 확인 후 추가 예정입니다.'; artifacts.append(note); detail.append(artifacts);
+    } else if (id === 3 || id === 7) {
+      const sections = id === 7 ? [
+        ['1. 프로젝트 소개', '상담 품질관리 업무를 자동화하기 위해 음성 텍스트 변환(STT)과 대규모 언어모델(LLM)을 활용한 AI Agent 워크플로를 설계했습니다.\\n\\n소속: NEED | 기간: 2025.04–2025.06 | 담당: 서비스 기획·운영'],
+        ['2. 문제 정의', '상담 품질관리를 운영자가 직접 수행해 건당 평균 30분 이상 소요되었고, 운영자마다 피드백 기준이 달랐습니다. 신규 상담사 교육에 활용할 표준 자료도 부족했습니다.'],
+        ['3. 가설과 핵심 결정', '상담 음성을 텍스트로 변환하고 LLM 기반 요약·평가 템플릿을 적용하면 품질관리 시간을 줄이면서 일관된 피드백을 제공할 수 있다고 가설을 세웠습니다.\\n\\n상담 요약·개선점·카테고리 분류를 포함하는 표준 피드백 템플릿을 설계하고, 신규 상담사 교육에도 활용할 수 있도록 구조화했습니다.'],
+        ['4. 실행', 'Channel.io API → Clova STT → Transcript Merge → AWS Bedrock LLM → Excel 자동 기록으로 이어지는 워크플로를 설계했습니다. 운영팀이 즉시 활용할 수 있는 상담 피드백 자동화 프로세스를 구현했습니다.'],
+        ['5. 성과', '상담 피드백 작성 시간 30분 → 5분(약 83% 단축). 운영자 간 피드백 편차를 줄일 수 있는 표준화된 품질관리 체계를 마련하고, 자동화 리포트를 규제·리스크 모니터링 및 신규 상담사 온보딩 자료로 활용할 수 있도록 했습니다.']
+      ] : [
+        ['1. 프로젝트 소개', '환자가 서비스에 가입한 뒤 실제 가치를 체감할 수 있도록 간호사 상담 서비스를 기획하고, 상담 채널·콘텐츠·인력 운영 구조를 설계했습니다.\\n\\n소속: NEED | 기간: 2024.06–2025.05 | 담당: 서비스 기획·운영'],
+        ['2. 문제 정의', '서비스 등록 절차에서 얻는 가치가 명확하지 않아 등록률이 약 40%에 머물렀습니다. 전화 중심 상담은 접근성과 확장성이 낮았고, 표준 품질관리 기준과 외부 인력 운영 모델이 필요했습니다.'],
+        ['3. 가설과 핵심 결정', '간호사 상담 서비스를 도입하면 사용자가 체감하는 가치와 등록률을 높일 수 있다고 판단했습니다. 앱·문자·카카오톡으로 상담 채널을 확장하고, 치료 단계·암종별 템플릿으로 상담 품질을 표준화했습니다. 프리랜서 간호사 운영 모델을 도입해 처리 용량을 확장했습니다.'],
+        ['4. 실행', '간호사 상담 서비스와 다채널 상담 흐름을 기획·운영했습니다. 상담 시나리오·사용자 세그먼트별 템플릿·스토리보드를 제작하고, 프리랜서 간호사 채용·온보딩 프로세스와 운영 SOP를 수립했습니다.'],
+        ['5. 성과', '서비스 등록률 40% → 60%(20%p 개선). 상담 처리량 90건/일 → 200건/일(약 2.2배). 전화 외 앱·문자·카카오톡으로 상담 접근성을 확대하고, 일관된 상담 운영 체계를 마련했습니다.']
+      ];
+      for (const [title, text] of sections) {
+        const section = document.createElement('section'); section.className = 'detail-section';
+        const h = document.createElement('h2'); h.textContent = title; section.append(h);
+        for (const paragraph of text.split('\\n\\n')) {
+          const p = document.createElement('p'); p.textContent = paragraph; section.append(p);
+        }
+        detail.append(section);
+      }
     } else {
     for (const [title,text] of [['담당 업무 및 기여',project[5]],['주요 성과',project[4]]]) {
       const section = document.createElement('section'); section.className = 'detail-section';
