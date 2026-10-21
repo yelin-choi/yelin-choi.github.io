@@ -54,7 +54,7 @@ if (detail) {
       for (const [title, text] of sections) {
         const section = document.createElement('section'); section.className = 'detail-section';
         const h = document.createElement('h2'); h.textContent = title; section.append(h);
-        for (const paragraph of text.split('\\n\\n')) {
+        for (const paragraph of text.split('\n\n')) {
           const p = document.createElement('p'); p.textContent = paragraph; p.style.whiteSpace = 'pre-line'; section.append(p);
         }
         detail.append(section);
