@@ -79,7 +79,7 @@ if (detail) {
       for (const [title, text] of sections) {
         const section = document.createElement('section'); section.className = 'detail-section';
         const h = document.createElement('h2'); h.textContent = title; section.append(h);
-        for (const paragraph of text.split('\\n\\n')) {
+        for (const paragraph of text.split('\n\n')) {
           const p = document.createElement('p'); p.textContent = paragraph; section.append(p);
         }
         detail.append(section);
@@ -89,7 +89,8 @@ if (detail) {
       const section = document.createElement('section'); section.className = 'detail-section';
       const h = document.createElement('h2'); h.textContent = title; const p = document.createElement('p'); p.textContent = text; section.append(h,p); detail.append(section);
     }
-    }\n    const note = document.createElement('p'); note.className = 'detail-note'; note.textContent = '수치는 실제 프로젝트 또는 팀 성과이며, 개인 단독 성과가 아닙니다. 공개 가능한 프로젝트 개요만 소개합니다.'; detail.append(note);
+    }
+    const note = document.createElement('p'); note.className = 'detail-note'; note.textContent = '수치는 실제 프로젝트 또는 팀 성과이며, 개인 단독 성과가 아닙니다. 공개 가능한 프로젝트 개요만 소개합니다.'; detail.append(note);
     const actions = document.createElement('div'); actions.className = 'actions';
     const next = document.createElement('a'); next.className = 'button'; next.href = `project.html?id=${id % projects.length + 1}`; next.textContent = '다음 프로젝트 →';
     const contact = document.createElement('a'); contact.className = 'button primary'; contact.href = 'mailto:ajh02060@naver.com'; contact.textContent = '프로젝트 문의하기'; actions.append(next,contact); detail.append(actions);
