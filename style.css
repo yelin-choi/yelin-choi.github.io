@@ -356,3 +356,21 @@ body:not(.experience-reference-body)>main,
   .experience-reference>.career-list>.reference-job{margin-bottom:42px}
   .work-page .project-card h3{font-size:var(--type-item-heading)}
 }
+
+/* Shared semantic subheading; category badges/filter controls remain metadata/UI. */
+:root{
+  --type-subheading-size:16px;
+  --type-subheading-weight:600;
+  --type-subheading-line-height:1.5;
+  --type-subheading-tracking:0;
+  --type-subheading-color:var(--ink);
+}
+.experience-reference .career-list .reference-job>h3,
+.detail-page .detail-section>h2{
+  font-family:inherit;
+  font-size:var(--type-subheading-size);
+  font-weight:var(--type-subheading-weight);
+  line-height:var(--type-subheading-line-height);
+  letter-spacing:var(--type-subheading-tracking);
+  color:var(--type-subheading-color);
+}
