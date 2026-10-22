@@ -473,3 +473,20 @@ body:not(.experience-reference-body)>main,
   .hero-portrait-split .hero-copy>p.hero-description{font-size:14px}
   .hero-portrait-split .portrait{width:100%;height:auto;aspect-ratio:382/488}
 }
+
+/* Compact HOW I WORK: retain typography and two-column structure. */
+.how-i-work{padding-top:64px;padding-bottom:56px}
+.how-i-work>.eyebrow{margin-bottom:14px}
+.how-i-work>h2{margin-bottom:36px}
+.how-i-work-grid{row-gap:32px;column-gap:48px}
+.how-i-work-item{padding-top:18px}
+.how-i-work-item h3{margin-bottom:12px}
+.how-i-work-item p{margin-bottom:7px}
+.how-i-work-item .how-i-work-evidence{margin-bottom:0}
+@media(max-width:809px){
+  .how-i-work{padding-top:48px;padding-bottom:48px}
+  .how-i-work>h2{margin-bottom:28px}
+  .how-i-work-grid{row-gap:24px}
+  .how-i-work-item{padding-top:16px}
+  .how-i-work-item h3{margin-bottom:10px}
+}
