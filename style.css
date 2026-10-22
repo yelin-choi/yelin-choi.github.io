@@ -245,3 +245,9 @@
 .experience-reference .language-tools-group.tools-stacked>h3{display:block;width:100%;flex:none;margin:0}
 .experience-reference .language-tools-group.tools-stacked>.brand-tools{display:flex;flex-direction:row;flex-wrap:wrap;flex:none;width:100%;min-width:0;align-items:flex-start;justify-content:flex-start;gap:12px 10px;margin:0;padding:0}
 @media(min-width:810px){.experience-reference .language-tools-group.tools-stacked{display:flex;flex-direction:column;grid-template-columns:none}.experience-reference .language-tools-group.tools-stacked>.brand-tools{flex-wrap:wrap;gap:12px 10px}}
+
+/* Shared editorial typography scale: equal hierarchy means equal size across pages.
+   Keep hero H1, individual project titles and job titles at their own levels. */
+:root{--type-section-heading:28px;--type-section-heading-mobile:23px}
+.how-i-work>h2,.featured>h2,.contact-cards .contact-copy>h2{font-size:var(--type-section-heading);font-weight:700;line-height:1.45;letter-spacing:-.045em}
+@media(max-width:809px){.how-i-work>h2,.featured>h2,.contact-cards .contact-copy>h2{font-size:var(--type-section-heading-mobile)}}
