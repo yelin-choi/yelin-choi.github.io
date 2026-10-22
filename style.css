@@ -149,3 +149,16 @@
 .experience-reference .brand-tool span{font-size:9px}
 @media(min-width:810px){.experience-reference .brand-tools{gap:9px}}
 @media(max-width:809px){.experience-reference .brand-tools .brand-tool{width:38px}}
+
+/* Tighter, smaller tool-logo row */
+.experience-reference .brand-tools{justify-content:flex-start;gap:10px 6px}
+.experience-reference .brand-tools .brand-tool{width:34px;gap:3px}
+.experience-reference .brand-tool img{width:16px;height:16px}
+.experience-reference .brand-tool span{font-size:9px}
+@media(min-width:810px){.experience-reference .brand-tools{gap:6px;flex-wrap:nowrap}}
+@media(max-width:809px){.experience-reference .brand-tools{gap:10px 6px}.experience-reference .brand-tools .brand-tool{width:34px}}
+
+/* Match Experience page background and typography to the rest of the portfolio */
+.experience-reference-body{background:var(--paper);color:var(--ink);font-family:'Apple SD Gothic Neo',Arial,'Malgun Gothic',sans-serif}
+.experience-reference-body .site-header{background:transparent}
+.experience-reference .reference-job>p a{color:inherit}
