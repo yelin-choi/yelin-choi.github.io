@@ -15,3 +15,11 @@
 .case-flow li{counter-increment:steps;flex:1 1 115px;background:#eeece6;border-radius:4px;padding:14px 10px;font-size:12px;text-align:center;line-height:1.5}
 .case-flow li:before{content:counter(steps,decimal-leading-zero);display:block;color:#777e6d;font-size:11px;margin-bottom:6px}
 @media(max-width:809px){.case-metrics{grid-template-columns:1fr;gap:8px}.case-metric{padding:15px}.case-metric strong{font-size:23px}.decision-row{gap:12px;padding:12px;font-size:12px}.case-flow{padding:12px}.case-flow li{flex-basis:40%}}
+
+/* Real project artifact galleries */
+.artifact-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:18px}
+.artifact-item{margin:0;min-width:0}
+.artifact-item img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:4px;object-fit:contain;background:#f7f6f2}
+.artifact-item figcaption{font-size:12px;line-height:1.7;color:#65655e;margin-top:10px}
+.artifact-missing{display:none}
+@media(max-width:809px){.artifact-gallery{grid-template-columns:1fr;gap:20px}}
