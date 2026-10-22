@@ -245,3 +245,13 @@
 .experience-reference .language-tools-group.tools-stacked>h3{display:block;width:100%;flex:none;margin:0}
 .experience-reference .language-tools-group.tools-stacked>.brand-tools{display:flex;flex-direction:row;flex-wrap:wrap;flex:none;width:100%;min-width:0;align-items:flex-start;justify-content:flex-start;gap:12px 10px;margin:0;padding:0}
 @media(min-width:810px){.experience-reference .language-tools-group.tools-stacked{display:flex;flex-direction:column;grid-template-columns:none}.experience-reference .language-tools-group.tools-stacked>.brand-tools{flex-wrap:wrap;gap:12px 10px}}
+
+/* Align compact Contact cards with the GET IN TOUCH label, desktop only */
+@media(min-width:810px){
+  .contact.contact-redesign.contact-cards{align-items:start}
+  .contact-cards .contact-methods{align-self:start;gap:14px}
+  .contact-cards .contact-card{min-height:128px;padding:20px 26px}
+  .contact-cards .contact-card-link{gap:7px}
+  .contact-cards .contact-email-detail{margin-top:4px}
+  .contact-cards .contact-card-arrow{top:20px;right:25px}
+}
