@@ -490,3 +490,21 @@ body:not(.experience-reference-body)>main,
   .how-i-work-item{padding-top:16px}
   .how-i-work-item h3{margin-bottom:10px}
 }
+
+/* HOW I WORK: item titles subordinate to the section headline. */
+.how-i-work .how-i-work-item h3{
+  font-size:clamp(20px,2vw,25px);
+  font-weight:700;
+  line-height:1.4;
+  letter-spacing:-.035em;
+}
+.how-i-work-number{
+  font-family:inherit;
+  font-size:.86em;
+  font-weight:600;
+  vertical-align:baseline;
+  margin-right:.3em;
+}
+@media(max-width:809px){
+  .how-i-work .how-i-work-item h3{font-size:clamp(19px,5vw,23px)}
+}
