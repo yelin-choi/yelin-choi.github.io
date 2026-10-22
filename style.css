@@ -101,3 +101,13 @@
 .experience-reference .reference-extra ul{padding-left:22px}
 .experience-reference .reference-extra li{margin:0 0 7px}
 @media(max-width:809px){.experience-reference-main{padding:52px 24px 88px}.experience-reference{max-width:100%}.experience-reference .reference-eyebrow{margin-bottom:22px}.experience-reference h1{font-size:24px;margin-bottom:20px}.experience-reference .reference-job h2{font-size:18px}.experience-reference .reference-job{margin-bottom:42px}.experience-reference .reference-extra h2{font-size:22px}.experience-reference .reference-job>p:not(.reference-date),.experience-reference li{font-size:13px;line-height:1.65}.experience-reference .reference-job h3{font-size:13px}}
+
+/* Experience: company descriptions and duty lists +1pt */
+.experience-reference .reference-job>p:not(.reference-date){font-size:13.5px}
+.experience-reference .reference-job h3{font-size:13.5px}
+.experience-reference .reference-job li{font-size:13.5px}
+@media(max-width:809px){
+  .experience-reference .reference-job>p:not(.reference-date){font-size:14px}
+  .experience-reference .reference-job h3{font-size:14px}
+  .experience-reference .reference-job li{font-size:14px}
+}
