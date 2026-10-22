@@ -261,3 +261,29 @@
 .contact-cards .contact-email-detail{margin-top:4px}
 .contact-cards .contact-card-arrow{top:20px;right:25px}
 }
+
+/* Contact: align both columns by their actual top edges, not offsets. */
+@media(min-width:810px){
+  .contact.contact-redesign.contact-cards{align-items:start}
+  .contact.contact-redesign.contact-cards>.contact-copy,
+  .contact.contact-redesign.contact-cards>.contact-methods{
+    align-self:start;
+    min-width:0;
+    margin-block-start:0;
+    padding-block-start:0;
+  }
+  .contact.contact-redesign.contact-cards>.contact-copy>.contact-eyebrow{
+    margin-block-start:0;
+  }
+  .contact.contact-redesign.contact-cards>.contact-methods{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    grid-auto-rows:128px;
+    gap:14px;
+  }
+  .contact.contact-redesign.contact-cards>.contact-methods>.contact-card{
+    height:128px;
+    min-height:0;
+    box-sizing:border-box;
+  }
+}
