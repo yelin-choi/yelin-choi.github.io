@@ -251,3 +251,13 @@
 :root{--type-section-heading:28px;--type-section-heading-mobile:23px}
 .how-i-work>h2,.featured>h2,.contact-cards .contact-copy>h2{font-size:var(--type-section-heading);font-weight:700;line-height:1.45;letter-spacing:-.045em}
 @media(max-width:809px){.how-i-work>h2,.featured>h2,.contact-cards .contact-copy>h2{font-size:var(--type-section-heading-mobile)}}
+
+/* Compact Contact cards; align card stack with GET IN TOUCH on desktop */
+@media(min-width:810px){
+.contact.contact-redesign.contact-cards{align-items:start}
+.contact-cards .contact-methods{align-self:start;gap:14px}
+.contact-cards .contact-card{min-height:128px;padding:20px 26px}
+.contact-cards .contact-card-link{gap:7px}
+.contact-cards .contact-email-detail{margin-top:4px}
+.contact-cards .contact-card-arrow{top:20px;right:25px}
+}
