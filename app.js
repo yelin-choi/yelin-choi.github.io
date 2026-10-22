@@ -33,6 +33,33 @@ if (filters) {
   });
   const category = new URLSearchParams(location.search).get('category'); selectCategory(categories.includes(category) ? category : '전체');
 }
+
+function visualSection(id, sections, detail) {
+  const data={
+    2:{metrics:[['+5%p','등록 전환율 개선'],['500명','요약본 제공'],['20명','환자·의사 인터뷰']],choices:[['의료정보 이해 어려움','환자 친화적 AI 요약'],['치료 흐름 파악 어려움','치료 여정 타임라인'],['가입 직후 가치 체감 부족','맞춤형 PDF 제공']],steps:['사용자 조사','PRD 작성','MVP 제작','실사용자 제공']},
+    3:{metrics:[['40% → 60%','서비스 등록률'],['90 → 200건/일','상담 처리량'],['2.2배','처리 역량 확대']],choices:[['전화 중심 상담','앱·문자·카카오톡 확장'],['상담 품질 편차','암종·치료 단계별 템플릿'],['내부 인력 확장 한계','프리랜서 간호사 운영']],steps:['문제 분석','서비스·채널 설계','채용·온보딩','운영·성과 확인']},
+    7:{metrics:[['30분 → 5분','피드백 작성 시간'],['약 83%','소요 시간 단축'],['STT + LLM','자동화 방식']],choices:[['수작업 품질관리','음성 전사·LLM 평가'],['운영자별 피드백 편차','표준 피드백 템플릿'],['교육 자료 부족','피드백 기록 재활용']],steps:['Channel.io API','Clova STT','대화록 통합','AWS Bedrock LLM','Excel 기록']}
+  }[id];
+  const make=(tag,cls,txt)=>{const n=document.createElement(tag);n.className=cls||'';if(txt!==undefined)n.textContent=txt;return n;};
+  const metrics=make('div','case-metrics');
+  data.metrics.forEach(([num,label])=>{const card=make('div','case-metric');card.append(make('strong','',num),make('span','',label));metrics.append(card);});
+  detail.append(metrics);
+  sections.forEach(([title,content])=>{
+    const section=make('section','detail-section');
+    section.append(make('h2','',title.replace(/^\\d+\\.\\s*/,'')));
+    content.replace(/\\\\n/g,'\\n').split(/\\n\\n/).forEach(p=>section.append(make('p','',p)));
+    detail.append(section);
+    if(title.startsWith('3.')){
+      const panel=make('div','decision-panel');panel.append(make('h3','','문제와 제품 결정'));
+      data.choices.forEach(([problem,choice])=>{const row=make('div','decision-row');row.append(make('span','',problem),make('span','',choice));panel.append(row);});detail.append(panel);
+    }
+    if(title.startsWith('4.')){
+      const panel=make('div','flow-panel');panel.append(make('h3','','실행 흐름'));
+      const ol=make('ol','case-flow');data.steps.forEach(s=>ol.append(make('li','',s)));panel.append(ol);detail.append(panel);
+    }
+  });
+}
+
 const detail = document.querySelector('#project-detail');
 if (detail) {
   const id = Number(new URLSearchParams(location.search).get('id'));
@@ -51,14 +78,7 @@ if (detail) {
         ['4. 실행 및 검증', '암 환자 커뮤니티·논문·유사 서비스 조사로 사용자 불편을 파악했습니다. 환자 10명과 의사 10명을 대면 인터뷰해 요약본에 포함할 핵심 정보를 정의하고 PRD를 작성했습니다.\n\nVercel AI 기반으로 핵심 기능의 MVP를 직접 제작하고, 환자 친화적인 PDF 요약본 템플릿을 설계했습니다. 사용자 500명에게 요약본을 제공하고 피드백을 수집해 인앱 기능화를 위한 개선 방향을 검토했습니다.'],
         ['5. 성과', '서비스 등록 전환율 +5%p 개선 (이전 3개월 대비)\n\n사용자 500명에게 PDF 요약본을 제공했고, 검사 결과를 이전보다 쉽게 이해할 수 있었다는 긍정적인 피드백을 확인했습니다. 사용자 문제를 리서치로 발견하고 MVP로 구현해 실제 사용자에게 제공한 뒤 전환율 지표로 결과를 확인한 프로젝트입니다.']
       ];
-      for (const [title, text] of sections) {
-        const section = document.createElement('section'); section.className = 'detail-section';
-        const h = document.createElement('h2'); h.textContent = title; section.append(h);
-        for (const paragraph of text.split('\n\n')) {
-          const p = document.createElement('p'); p.textContent = paragraph; p.style.whiteSpace = 'pre-line'; section.append(p);
-        }
-        detail.append(section);
-      }
+      visualSection(id, sections, detail);
       const artifacts = document.createElement('section'); artifacts.className = 'detail-section';
       const heading = document.createElement('h2'); heading.textContent = '실제 작업물'; artifacts.append(heading);
       const note = document.createElement('p'); note.textContent = '① Vercel AI 기반 의무기록 요약 MVP 화면  ② 사용자에게 제공한 PDF 요약본 예시. 공개 가능한 비식별 자료 확인 후 추가 예정입니다.'; artifacts.append(note); detail.append(artifacts);
@@ -76,14 +96,7 @@ if (detail) {
         ['4. 실행', '간호사 상담 서비스와 다채널 상담 흐름을 기획·운영했습니다. 상담 시나리오·사용자 세그먼트별 템플릿·스토리보드를 제작하고, 프리랜서 간호사 채용·온보딩 프로세스와 운영 SOP를 수립했습니다.'],
         ['5. 성과', '서비스 등록률 40% → 60%(20%p 개선). 상담 처리량 90건/일 → 200건/일(약 2.2배). 전화 외 앱·문자·카카오톡으로 상담 접근성을 확대하고, 일관된 상담 운영 체계를 마련했습니다.']
       ];
-      for (const [title, text] of sections) {
-        const section = document.createElement('section'); section.className = 'detail-section';
-        const h = document.createElement('h2'); h.textContent = title; section.append(h);
-        for (const paragraph of text.split('\n\n')) {
-          const p = document.createElement('p'); p.textContent = paragraph; section.append(p);
-        }
-        detail.append(section);
-      }
+      visualSection(id, sections, detail);
     } else {
     for (const [title,text] of [['담당 업무 및 기여',project[5]],['주요 성과',project[4]]]) {
       const section = document.createElement('section'); section.className = 'detail-section';
