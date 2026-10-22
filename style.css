@@ -265,3 +265,13 @@
 /* Exact same-level heading scale for HOW I WORK and Featured Work */
 .how-i-work>h2.editorial-section-heading,.featured>h2.editorial-section-heading{font-size:28px;line-height:1.45;font-weight:700;letter-spacing:-.045em}
 @media(max-width:809px){.how-i-work>h2.editorial-section-heading,.featured>h2.editorial-section-heading{font-size:23px}}
+
+/* Align Contact column tops structurally, without visual offsets */
+@media(min-width:810px){
+.contact.contact-redesign.contact-cards{align-items:start}
+.contact.contact-redesign.contact-cards>.contact-copy,
+.contact.contact-redesign.contact-cards>.contact-methods{align-self:start;min-width:0;margin-block-start:0;padding-block-start:0}
+.contact.contact-redesign.contact-cards>.contact-copy>.contact-eyebrow{margin-block-start:0}
+.contact.contact-redesign.contact-cards>.contact-methods{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:128px;gap:14px}
+.contact.contact-redesign.contact-cards>.contact-methods>.contact-card{height:128px;min-height:0;box-sizing:border-box}
+}
