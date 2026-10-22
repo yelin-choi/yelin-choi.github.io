@@ -214,3 +214,10 @@
 @media(max-width:1199px){.contact.contact-redesign.contact-cards{margin-left:-40px;margin-right:-40px;padding:80px 40px;gap:32px}}
 @media(max-width:809px){.contact.contact-redesign.contact-cards{grid-template-columns:minmax(0,1fr);margin:64px -24px 0;padding:68px 24px 76px;gap:36px}.contact-cards h2{font-size:27px}.contact-cards .contact-description{font-size:14px}.contact-cards .contact-methods{max-width:none}.contact-cards .contact-card{min-height:142px;padding:24px}}
 @media(prefers-reduced-motion:reduce){.contact-cards .contact-card,.contact-cards .contact-card-arrow,.contact-cards .contact-toast{transition:none}}
+
+/* Stack tool logos beneath the Tools heading at all viewport widths */
+.experience-reference .language-tools-group:last-child{display:block}
+.experience-reference .language-tools-group:last-child h3{width:auto;margin:0 0 14px}
+.experience-reference .language-tools-group:last-child .brand-tools{display:flex;flex-wrap:wrap;flex:none;gap:12px 10px;margin:0;padding:0;align-items:flex-start;justify-content:flex-start}
+@media(min-width:810px){.experience-reference .language-tools-group:last-child{display:block}.experience-reference .language-tools-group:last-child .brand-tools{flex-wrap:wrap;gap:12px 10px;margin:0}}
+@media(max-width:809px){.experience-reference .language-tools-group:last-child{display:block}.experience-reference .language-tools-group:last-child h3{width:auto;margin:0 0 14px}.experience-reference .language-tools-group:last-child .brand-tools{flex:none;gap:12px 10px;margin:0}}
