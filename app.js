@@ -336,9 +336,10 @@ if (detail) {
 }
 
 const copy = document.querySelector('#copy-email');
-if (copy) {
+const primaryCopy = document.querySelector('.contact-card-copy-trigger');
+if (copy || primaryCopy) {
   let toastTimer;
-  copy.addEventListener('click', async (event) => {
+  const copyAddress = async (event) => {
     event.preventDefault();
     event.stopPropagation();
     const status = document.querySelector('#copy-status');
@@ -364,7 +365,8 @@ if (copy) {
     clearTimeout(toastTimer);
     status.classList.add('is-visible');
     toastTimer = setTimeout(() => status.classList.remove('is-visible'), 2400);
-  });
+  };
+  [copy, primaryCopy].filter(Boolean).forEach(button => button.addEventListener('click', copyAddress));
 }
 const currentPage = location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.site-header nav a').forEach(a => { if (a.getAttribute('href') === currentPage) a.setAttribute('aria-current','page'); });
