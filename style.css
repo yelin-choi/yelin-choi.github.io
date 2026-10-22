@@ -56,3 +56,24 @@
 .career-timeline .timeline-highlights span{border:1px solid #d8dfda;background:#f0f2ed;padding:8px 12px;border-radius:3px;font-size:12px}
 .career-timeline .text-link{margin-top:22px}
 @media(max-width:809px){.experience-page .journey{margin-bottom:36px}.career-timeline{margin-left:13px;padding-left:30px}.career-timeline .timeline-marker{left:-47px;width:30px;height:30px}.career-timeline .timeline-marker::after{left:8px;top:8px}.career-timeline .timeline-entry{padding-bottom:40px}.career-timeline .timeline-entry h2{font-size:23px}.career-timeline .timeline-role{font-size:15px}.career-timeline .timeline-entry li{font-size:13px}}
+
+/* Experience page: exact editorial layout adapted from the supplied PDF */
+.experience-reference-body{background:#fff;color:#161616}
+.experience-reference-main{max-width:1100px;padding:78px 80px 0}
+.experience-reference{max-width:980px;font-size:14px;line-height:1.65;letter-spacing:-.018em}
+.experience-reference .reference-eyebrow{font-size:12px;letter-spacing:0;margin:0 0 17px}
+.experience-reference h1{font-size:31px;line-height:1.3;letter-spacing:-.035em;margin:0 0 12px}
+.experience-reference .reference-job{margin:0 0 44px}
+.experience-reference .reference-job h2{font-size:18px;letter-spacing:-.025em;line-height:1.45;margin:0 0 4px;font-weight:700}
+.experience-reference .reference-date{font-size:12px;margin:0 0 7px}
+.experience-reference .reference-job>p:not(.reference-date){font-size:13px;line-height:1.6;margin:0}
+.experience-reference .reference-job>p a{color:#2477b6;text-decoration:underline;text-underline-offset:2px}
+.experience-reference .reference-job h3{font-size:13px;letter-spacing:0;margin:22px 0 12px;font-weight:700}
+.experience-reference ul{margin:0;padding-left:22px}
+.experience-reference li{font-size:13px;line-height:1.7;padding-left:2px;margin:0 0 9px}
+.experience-reference .reference-project-link{display:inline-block;font-size:13px;text-decoration:underline;text-underline-offset:3px;margin-top:20px}
+.experience-reference .reference-extra{margin:52px 0 0}
+.experience-reference .reference-extra h2{font-size:24px;line-height:1.4;margin-bottom:12px;letter-spacing:-.035em}
+.experience-reference .reference-extra li{margin-bottom:6px}
+.experience-reference-main .contact{border-top:1px solid var(--line);margin-top:80px}
+@media(max-width:809px){.experience-reference-main{padding:48px 24px 0}.experience-reference h1{font-size:28px}.experience-reference .reference-job h2{font-size:17px}.experience-reference .reference-job{margin-bottom:38px}.experience-reference .reference-extra h2{font-size:22px}.experience-reference .reference-job>p:not(.reference-date),.experience-reference li{font-size:13px}}
