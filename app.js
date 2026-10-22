@@ -72,8 +72,21 @@ if (detail) {
     const flow=element('div','flow-panel');flow.append(element('h3','','실행 흐름'));
     const steps=element('ol','case-flow');data.flow.forEach(step=>steps.append(element('li','',step)));flow.append(steps);detail.append(flow);
     addSection('결과 및 성과',data.result);
-    if(id===2){
-      const artifacts=element('section','detail-section');artifacts.append(element('h2','','실제 작업물'),element('p','','MVP 화면 및 PDF 요약본 예시: 비식별·공개 가능 자료 확인 후 추가 예정'));detail.append(artifacts);
+    const artifactMap={
+      1:[['physician-pilot-roadmap.png','전원 요약 AI Agent 파일럿 일정 및 서비스 흐름'],['physician-agent-configuration.png','암종별 요약 Agent 설정: Instruction · Model · Tool']],
+      2:[['patient-mvp.png','Vercel AI 기반 의무기록 요약 서비스 MVP'],['patient-summary-pdf.png','환자에게 제공한 의무기록 요약본 PDF 예시']]
+    };
+    if(artifactMap[id]){
+      const section=element('section','detail-section project-artifacts');
+      section.append(element('h2','','실제 작업물'));
+      const gallery=element('div','artifact-gallery');
+      artifactMap[id].forEach(([filename,caption])=>{
+        const figure=element('figure','artifact-item');
+        const img=document.createElement('img');img.src='assets/'+filename;img.alt=caption;img.loading='lazy';
+        img.onerror=()=>{img.hidden=true;figure.classList.add('artifact-missing');};
+        figure.append(img,element('figcaption','',caption));gallery.append(figure);
+      });
+      section.append(gallery);detail.append(section);
     }
     detail.append(element('p','detail-note','정량 성과는 해당 프로젝트의 확인된 범위로 한정하며, 개인 단독 성과로 해석하지 않습니다.'));
     const actions=element('div','actions');
