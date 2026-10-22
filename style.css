@@ -493,7 +493,7 @@ body:not(.experience-reference-body)>main,
 
 /* HOW I WORK: item titles subordinate to the section headline. */
 .how-i-work .how-i-work-item h3{
-  font-size:clamp(20px,2vw,25px);
+  font-size:clamp(19px,1.8vw,22px);
   font-weight:700;
   line-height:1.4;
   letter-spacing:-.035em;
@@ -506,5 +506,5 @@ body:not(.experience-reference-body)>main,
   margin-right:.3em;
 }
 @media(max-width:809px){
-  .how-i-work .how-i-work-item h3{font-size:clamp(19px,5vw,23px)}
+  .how-i-work .how-i-work-item h3{font-size:clamp(18px,4.8vw,21px)}
 }
