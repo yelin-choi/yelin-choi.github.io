@@ -438,3 +438,13 @@ body:not(.experience-reference-body)>main,
 @media(max-width:809px){
   .site-header{padding-inline:var(--page-gutter,24px)}
 }
+
+/* Experience, Education & Credentials, Language & Tools are peer section headings. */
+.experience-reference>h1,
+.experience-reference>.reference-extra>h2{
+  font-size:var(--type-section-heading);
+  font-weight:700;
+  line-height:1.3;
+  letter-spacing:-.025em;
+  color:var(--ink);
+}
