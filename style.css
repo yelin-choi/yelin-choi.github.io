@@ -473,3 +473,31 @@ body:not(.experience-reference-body)>main,
   .hero-portrait-split .hero-copy>p.hero-description{font-size:14px}
   .hero-portrait-split .portrait{width:100%;height:auto;aspect-ratio:382/488}
 }
+
+/* Ensure the existing portrait is visible in the split Home hero. */
+@media(min-width:810px){
+  .hero.hero-editorial.hero-portrait-split{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);
+    align-items:center;
+  }
+  .hero.hero-editorial.hero-portrait-split>.portrait{
+    display:block;
+    visibility:visible;
+    opacity:1;
+    width:100%;
+    height:auto;
+    min-width:0;
+    aspect-ratio:382/488;
+    object-fit:cover;
+  }
+}
+@media(max-width:809px){
+  .hero.hero-editorial.hero-portrait-split>.portrait{
+    display:block;
+    visibility:visible;
+    opacity:1;
+    width:100%;
+    height:auto;
+  }
+}
