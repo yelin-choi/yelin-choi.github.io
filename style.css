@@ -111,3 +111,7 @@
   .experience-reference .reference-job h3{font-size:14px}
   .experience-reference .reference-job li{font-size:14px}
 }
+
+/* Keep breathing room below the final Skills & Languages item. */
+.experience-reference-main{padding-bottom:max(76px, 2cm)}
+@media(max-width:809px){.experience-reference-main{padding-bottom:max(76px, 2cm)}}
