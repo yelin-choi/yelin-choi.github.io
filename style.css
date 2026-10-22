@@ -189,3 +189,28 @@
 .experience-reference .reference-project-arrow{display:inline-block;transition:transform .2s ease}
 .experience-reference .reference-project-link:hover .reference-project-arrow{transform:translate(3px,-3px)}
 @media(prefers-reduced-motion:reduce){.experience-reference .reference-project-arrow,.contact-redesign .contact-arrow{transition:none}}
+
+/* Contact card redesign: override previous charcoal treatment, scoped to home contact only */
+.contact.contact-redesign.contact-cards{position:relative;isolation:isolate;background:#F7F6F2;color:#30332F;grid-template-columns:minmax(0,55fr) minmax(0,45fr);gap:44px;align-items:center;margin:80px -80px 0;padding:100px 80px 112px;border:0}
+.contact-cards .contact-eyebrow{color:#777A73;letter-spacing:.13em;margin:0 0 25px}
+.contact-cards h2{color:#30332F;font-size:clamp(26px,2.8vw,36px);line-height:1.45;letter-spacing:-.045em;margin:0 0 28px}
+.contact-cards .contact-description{color:#777A73;font-size:15px;line-height:1.95}
+.contact-cards .contact-methods{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;max-width:none}
+.contact-cards .contact-card{position:relative;display:flex;flex-direction:column;justify-content:center;min-width:0;min-height:156px;padding:26px 28px;border:1px solid #DDDED7;border-radius:14px;background:#EBEAE5;color:#30332F;text-decoration:none;transition:background .2s ease,transform .2s ease,border-color .2s ease}
+.contact-cards .contact-card:hover,.contact-cards .contact-card:focus-within{background:#E2E3DC;border-color:#C9CCC3;transform:translateY(-2px)}
+.contact-cards .contact-card-link{display:flex;flex-direction:column;align-items:flex-start;gap:11px;min-width:0;text-decoration:none}
+.contact-cards .contact-card-icon{display:inline-flex;width:23px;height:23px;align-items:center;justify-content:center;color:#30332F}
+.contact-cards .contact-card-icon svg{width:23px;height:23px}
+.contact-cards .contact-card-title{font-size:16px;font-weight:600;line-height:1.5;letter-spacing:-.02em}
+.contact-cards .contact-card-arrow{position:absolute;right:27px;top:25px;font-size:20px;line-height:1;transition:transform .2s ease}
+.contact-cards .contact-card:hover .contact-card-arrow,.contact-cards .contact-card:focus-within .contact-card-arrow{transform:translate(2px,-2px)}
+.contact-cards .contact-email-detail{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:7px;min-width:0}
+.contact-cards .contact-email-text{font-size:13px;line-height:1.6;color:#777A73;overflow-wrap:anywhere}
+.contact-cards .contact-copy-button{display:inline-flex;align-items:center;justify-content:center;flex:none;width:30px;height:30px;padding:5px;border:1px solid transparent;border-radius:7px;background:transparent;color:#777A73;cursor:pointer}
+.contact-cards .contact-copy-button:hover{color:#30332F;background:#D7D9D1}
+.contact-cards .contact-copy-button svg{width:17px;height:17px}
+.contact-cards .contact-toast{position:fixed;z-index:100;left:50%;bottom:26px;transform:translate(-50%,12px);padding:10px 16px;border-radius:8px;background:#30332F;color:#F7F6F2;font-size:12px;line-height:1.5;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;max-width:min(90vw,380px);text-align:center}
+.contact-cards .contact-toast.is-visible{opacity:1;transform:translate(-50%,0)}
+@media(max-width:1199px){.contact.contact-redesign.contact-cards{margin-left:-40px;margin-right:-40px;padding:80px 40px;gap:32px}}
+@media(max-width:809px){.contact.contact-redesign.contact-cards{grid-template-columns:minmax(0,1fr);margin:64px -24px 0;padding:68px 24px 76px;gap:36px}.contact-cards h2{font-size:27px}.contact-cards .contact-description{font-size:14px}.contact-cards .contact-methods{max-width:none}.contact-cards .contact-card{min-height:142px;padding:24px}}
+@media(prefers-reduced-motion:reduce){.contact-cards .contact-card,.contact-cards .contact-card-arrow,.contact-cards .contact-toast{transition:none}}
