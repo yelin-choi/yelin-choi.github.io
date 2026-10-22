@@ -428,3 +428,13 @@ body:not(.experience-reference-body)>main,
   .hero-editorial .actions{gap:10px}
   .hero-editorial .actions .button{font-size:13px;padding:10px 13px;min-height:45px}
 }
+
+/* One horizontal grid for navigation and page content. */
+.site-header{
+  width:100%;
+  max-width:var(--page-content-max,1200px);
+  padding-inline:var(--page-gutter,80px);
+}
+@media(max-width:809px){
+  .site-header{padding-inline:var(--page-gutter,24px)}
+}
