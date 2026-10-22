@@ -317,9 +317,13 @@ if (detail) {
       const gallery=element('div','artifact-gallery');
       artifactMap[id].forEach(([filename,caption])=>{
         const figure=element('figure','artifact-item');
+        const media=element('div','artifact-media');
         const img=document.createElement('img');img.src='assets/'+filename;img.alt=caption;img.loading='lazy';
-        img.onerror=()=>{img.hidden=true;figure.classList.add('artifact-missing');};
-        figure.append(img,element('figcaption','',caption));gallery.append(figure);
+        // Earlier composite exports include a clipped heading at the top; conceal it without cropping the main artifact.
+        if (id===1) media.classList.add('artifact-media--trim-top');
+        img.onerror=()=>{figure.classList.add('artifact-missing');};
+        media.append(img);
+        figure.append(media,element('figcaption','',caption));gallery.append(figure);
       });
       section.append(gallery);detail.append(section);
     }
