@@ -77,3 +77,27 @@
 .experience-reference .reference-extra li{margin-bottom:6px}
 .experience-reference-main .contact{border-top:1px solid var(--line);margin-top:80px}
 @media(max-width:809px){.experience-reference-main{padding:48px 24px 0}.experience-reference h1{font-size:28px}.experience-reference .reference-job h2{font-size:17px}.experience-reference .reference-job{margin-bottom:38px}.experience-reference .reference-extra h2{font-size:22px}.experience-reference .reference-job>p:not(.reference-date),.experience-reference li{font-size:13px}}
+
+/* Experience PDF fidelity pass — isolated to Experience */
+.experience-reference-body{background:#fff;color:#191919;font-family:Arial,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:13px;line-height:1.48}
+.experience-reference-body .site-header{background:#fff}
+.experience-reference-main{width:100%;max-width:1000px;margin:0 auto;padding:74px 72px 125px}
+.experience-reference{width:100%;max-width:856px;margin:0;font-size:13px;line-height:1.48;letter-spacing:0;word-break:keep-all;overflow-wrap:break-word}
+.experience-reference .reference-eyebrow{font-size:12px;font-weight:400;letter-spacing:0;margin:0 0 24px;line-height:1.4}
+.experience-reference h1{font-size:24px;line-height:1.2;letter-spacing:-.02em;font-weight:700;margin:0 0 18px}
+.experience-reference .reference-job{margin:0 0 46px;padding:0;border:0}
+.experience-reference .reference-job h2{font-size:19px;line-height:1.35;font-weight:700;letter-spacing:-.025em;margin:0 0 5px}
+.experience-reference .reference-date{font-size:12px;line-height:1.4;margin:0 0 7px}
+.experience-reference .reference-job>p:not(.reference-date){font-size:12.5px;line-height:1.5;margin:0}
+.experience-reference .reference-job>p a{color:#0969da;text-decoration:underline;text-underline-offset:2px}
+.experience-reference .reference-job h3{font-size:12.5px;line-height:1.45;font-weight:700;letter-spacing:0;margin:21px 0 15px}
+.experience-reference ul{list-style:disc;margin:0;padding-left:22px}
+.experience-reference li{font-size:12.5px;line-height:1.5;margin:0 0 13px;padding-left:0}
+.experience-reference li::marker{font-size:10px}
+.experience-reference li strong{font-weight:700}
+.experience-reference .reference-project-link{display:inline-block;margin:22px 0 0;font-size:12.5px;text-decoration:underline;text-underline-offset:3px}
+.experience-reference .reference-extra{margin:0 0 49px;padding:0;border:0}
+.experience-reference .reference-extra h2{font-size:23px;line-height:1.3;font-weight:700;letter-spacing:-.025em;margin:0 0 12px}
+.experience-reference .reference-extra ul{padding-left:22px}
+.experience-reference .reference-extra li{margin:0 0 7px}
+@media(max-width:809px){.experience-reference-main{padding:52px 24px 88px}.experience-reference{max-width:100%}.experience-reference .reference-eyebrow{margin-bottom:22px}.experience-reference h1{font-size:24px;margin-bottom:20px}.experience-reference .reference-job h2{font-size:18px}.experience-reference .reference-job{margin-bottom:42px}.experience-reference .reference-extra h2{font-size:22px}.experience-reference .reference-job>p:not(.reference-date),.experience-reference li{font-size:13px;line-height:1.65}.experience-reference .reference-job h3{font-size:13px}}
