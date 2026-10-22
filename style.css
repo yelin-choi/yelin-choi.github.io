@@ -23,3 +23,12 @@
 .artifact-item figcaption{font-size:12px;line-height:1.7;color:#65655e;margin-top:10px}
 .artifact-missing{display:none}
 @media(max-width:809px){.artifact-gallery{grid-template-columns:1fr;gap:20px}}
+
+/* Artifact gallery refinement: clean screenshots, no clipped source headings */
+.project-artifacts .artifact-gallery{align-items:start;gap:28px}
+.project-artifacts .artifact-item{min-width:0;text-align:center}
+.project-artifacts .artifact-media{overflow:hidden;border:1px solid var(--line);border-radius:5px;background:#fff;padding:12px}
+.project-artifacts .artifact-media img{display:block;width:100%;height:auto;max-height:620px;object-fit:contain;border:0;border-radius:0;background:#fff}
+.project-artifacts .artifact-media--trim-top img{margin-top:-4%;max-height:none}
+.project-artifacts .artifact-item figcaption{margin:14px auto 0;max-width:95%;text-align:center;font-size:13px;line-height:1.7;color:#65655e;overflow-wrap:anywhere}
+@media(max-width:809px){.project-artifacts .artifact-gallery{gap:32px}.project-artifacts .artifact-media{padding:8px}.project-artifacts .artifact-media img{max-height:none}}
