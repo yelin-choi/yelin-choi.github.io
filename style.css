@@ -182,3 +182,10 @@
 .contact-redesign .contact-copy-status{color:#B7BDB2;font-size:11px;line-height:1.5;min-height:0}
 @media(max-width:1199px){.contact.contact-redesign{margin-left:-40px;margin-right:-40px;padding:65px 40px;gap:40px}}
 @media(max-width:809px){.contact.contact-redesign{grid-template-columns:1fr;gap:34px;margin:64px -24px 0;padding:56px 24px 70px}.contact-redesign h2{font-size:26px}.contact-redesign .contact-description{font-size:14px}.contact-redesign .contact-methods{max-width:420px;gap:20px}}
+
+/* Minimal editorial project link, with restrained hover movement */
+.experience-reference .reference-project-link{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.experience-reference .reference-project-link span:first-child{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.experience-reference .reference-project-arrow{display:inline-block;transition:transform .2s ease}
+.experience-reference .reference-project-link:hover .reference-project-arrow{transform:translate(3px,-3px)}
+@media(prefers-reduced-motion:reduce){.experience-reference .reference-project-arrow,.contact-redesign .contact-arrow{transition:none}}
