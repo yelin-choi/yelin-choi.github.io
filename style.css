@@ -126,3 +126,26 @@
 .experience-reference .brand-tool img{display:block;width:32px;height:32px;object-fit:contain}
 .experience-reference .brand-tool span{font-size:11px;line-height:1.4;font-weight:400;white-space:nowrap}
 @media(max-width:809px){.experience-reference .brand-tools{gap:20px 14px}.experience-reference .brand-tools .brand-tool{width:58px}.experience-reference .brand-tool span{font-size:11px}}
+
+/* Compact Tools: heading at left, small logos in one horizontal row to the right */
+@media(min-width:810px){
+  .experience-reference .language-tools-group:last-child{display:grid;grid-template-columns:74px minmax(0,1fr);align-items:start;column-gap:14px}
+  .experience-reference .language-tools-group:last-child h3{margin:3px 0 0}
+  .experience-reference .brand-tools{flex-wrap:nowrap;gap:10px;margin:0}
+}
+.experience-reference .brand-tools .brand-tool{width:44px;gap:5px}
+.experience-reference .brand-tool img{width:24px;height:24px}
+.experience-reference .brand-tool span{font-size:10px}
+@media(max-width:809px){
+  .experience-reference .language-tools-group:last-child{display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px}
+  .experience-reference .language-tools-group:last-child h3{width:62px;flex:none;margin:3px 0 0}
+  .experience-reference .brand-tools{flex:1;min-width:0;gap:14px 9px;margin:0}
+  .experience-reference .brand-tools .brand-tool{width:44px}
+}
+
+/* Slightly smaller tool logos and captions */
+.experience-reference .brand-tools .brand-tool{width:38px;gap:4px}
+.experience-reference .brand-tool img{width:20px;height:20px}
+.experience-reference .brand-tool span{font-size:9px}
+@media(min-width:810px){.experience-reference .brand-tools{gap:9px}}
+@media(max-width:809px){.experience-reference .brand-tools .brand-tool{width:38px}}
