@@ -261,3 +261,7 @@
 .contact-cards .contact-email-detail{margin-top:4px}
 .contact-cards .contact-card-arrow{top:20px;right:25px}
 }
+
+/* Exact same-level heading scale for HOW I WORK and Featured Work */
+.how-i-work>h2.editorial-section-heading,.featured>h2.editorial-section-heading{font-size:28px;line-height:1.45;font-weight:700;letter-spacing:-.045em}
+@media(max-width:809px){.how-i-work>h2.editorial-section-heading,.featured>h2.editorial-section-heading{font-size:23px}}
