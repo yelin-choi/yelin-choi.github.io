@@ -17,7 +17,7 @@ function card(project, index) {
   link.textContent = '자세히 보기 →'; link.setAttribute('aria-label', `${title} 자세히 보기`);
   article.append(link); return article;
 }
-if (grid) projects.forEach((project, index) => grid.append(card(project, index)));
+if (grid) projects.forEach((project, index) => { if (document.querySelector('.featured') && index === 4) return; grid.append(card(project, index)); });
 const filters = document.querySelector('.filters');
 if (filters) {
   function selectCategory(category) {
@@ -34,81 +34,55 @@ if (filters) {
   const category = new URLSearchParams(location.search).get('category'); selectCategory(categories.includes(category) ? category : '전체');
 }
 
-function visualSection(id, sections, detail) {
-  const data={
-    2:{metrics:[['+5%p','등록 전환율 개선'],['500명','요약본 제공'],['20명','환자·의사 인터뷰']],choices:[['의료정보 이해 어려움','환자 친화적 AI 요약'],['치료 흐름 파악 어려움','치료 여정 타임라인'],['가입 직후 가치 체감 부족','맞춤형 PDF 제공']],steps:['사용자 조사','PRD 작성','MVP 제작','실사용자 제공']},
-    3:{metrics:[['40% → 60%','서비스 등록률'],['90 → 200건/일','상담 처리량'],['2.2배','처리 역량 확대']],choices:[['전화 중심 상담','앱·문자·카카오톡 확장'],['상담 품질 편차','암종·치료 단계별 템플릿'],['내부 인력 확장 한계','프리랜서 간호사 운영']],steps:['문제 분석','서비스·채널 설계','채용·온보딩','운영·성과 확인']},
-    7:{metrics:[['30분 → 5분','피드백 작성 시간'],['약 83%','소요 시간 단축'],['STT + LLM','자동화 방식']],choices:[['수작업 품질관리','음성 전사·LLM 평가'],['운영자별 피드백 편차','표준 피드백 템플릿'],['교육 자료 부족','피드백 기록 재활용']],steps:['Channel.io API','Clova STT','대화록 통합','AWS Bedrock LLM','Excel 기록']}
-  }[id];
-  const make=(tag,cls,txt)=>{const n=document.createElement(tag);n.className=cls||'';if(txt!==undefined)n.textContent=txt;return n;};
-  const metrics=make('div','case-metrics');
-  data.metrics.forEach(([num,label])=>{const card=make('div','case-metric');card.append(make('strong','',num),make('span','',label));metrics.append(card);});
-  detail.append(metrics);
-  sections.forEach(([title,content])=>{
-    const section=make('section','detail-section');
-    section.append(make('h2','',title.replace(/^\\d+\\.\\s*/,'')));
-    content.replace(/\\\\n/g,'\\n').split(/\\n\\n/).forEach(p=>section.append(make('p','',p)));
-    detail.append(section);
-    if(title.startsWith('3.')){
-      const panel=make('div','decision-panel');panel.append(make('h3','','문제와 제품 결정'));
-      data.choices.forEach(([problem,choice])=>{const row=make('div','decision-row');row.append(make('span','',problem),make('span','',choice));panel.append(row);});detail.append(panel);
-    }
-    if(title.startsWith('4.')){
-      const panel=make('div','flow-panel');panel.append(make('h3','','실행 흐름'));
-      const ol=make('ol','case-flow');data.steps.forEach(s=>ol.append(make('li','',s)));panel.append(ol);detail.append(panel);
-    }
-  });
-}
 
+
+const cases = [{"problem":["수백 장의 의무기록에 진료에 필요한 정보가 흩어져 있어 수작업 검토에 60~90분이 소요됐습니다.","정보 확인 방식이 의료진 개인의 숙련도에 의존했습니다."],"hypothesis":["의료진의 진료 흐름에 맞춰 핵심 정보를 구조화하면 의무기록 검토의 반복 작업을 줄일 수 있습니다."],"execution":["의료진 인터뷰를 통해 필수 확인 항목을 정의하고 암종·교수별 요약 템플릿을 설계했습니다.","파일럿 일정·의료진 필수 요구사항·AI 정확도를 기준으로 우선순위를 조율했습니다.","LLM Agent의 Instruction·Model·Tool을 직접 구성하고 사람의 검토가 포함된 QA 및 기술→운영 검증 흐름을 설계했습니다."],"result":["동일 의무기록 기준 정보 확인·정리 시간이 내부 기술 검증에서 30분 → 5분으로 단축됐습니다.","전체 초진 준비 시간 60~90분과는 측정 범위가 다릅니다."],"metrics":[["30분 → 5분","정보 확인·정리 시간 (내부 검증)"],["2단계","기술·운영 검증 설계"]],"decisions":[["암종·의료진별 정보 요구 차이","맞춤형 요약 템플릿"],["정확성 확인 필요","사람이 검토하는 QA"],["일정·필수 요구·AI 정확도","기능 우선순위 조율"]],"flow":["요구사항 분석","Agent 구성","요약·QA","파일럿 검증"]},{"problem":["가입 직후 서비스의 효용을 체감하기 어려워 등록 전환율이 정체되어 있었습니다.","환자는 전문용어가 많은 진단·검사 결과와 치료 흐름을 이해하기 어려웠습니다."],"hypothesis":["의무기록을 환자 친화적인 언어와 치료 타임라인으로 정리해 제공하면 이해도와 가입 직후 체감 가치를 높일 수 있습니다."],"execution":["암 환자 커뮤니티·논문·경쟁 서비스를 조사하고 환자 10명·의사 10명을 인터뷰했습니다.","법적 위험을 검토하고 PRD 및 PDF 요약 템플릿을 설계했습니다.","Vercel AI 기반 MVP를 직접 제작해 500명에게 요약본을 제공하고 피드백을 수집했습니다."],"result":["이전 3개월 대비 서비스 등록 전환율 +5%p 개선.","사용자 500명에게 PDF 요약본을 제공하고 검사 결과를 이해하는 데 도움이 됐다는 피드백을 확인했습니다."],"metrics":[["+5%p","등록 전환율 개선"],["500명","요약본 제공"],["20명","환자·의사 인터뷰"]],"decisions":[["전문용어 이해 어려움","쉬운 언어의 요약"],["치료 흐름 파악 어려움","타임라인 구성"],["가입 직후 가치 부족","맞춤형 PDF 제공"]],"flow":["사용자 조사","PRD·법률 검토","MVP 제작","500명 제공"]},{"problem":["가입 단계에서 체감할 수 있는 가치가 부족해 서비스 등록률이 약 40%에 머물렀습니다.","전화 중심 상담과 일관되지 않은 운영 방식으로 접근성과 확장성이 제한됐습니다."],"hypothesis":["간호사 상담 서비스를 도입하고 상담 채널·품질·인력 운영을 표준화하면 등록률과 처리 역량을 개선할 수 있습니다."],"execution":["간호사 상담 서비스를 기획하고 앱·문자·카카오톡으로 채널을 확대했습니다.","치료 단계·암종별 상담 템플릿과 스토리보드를 설계했습니다.","프리랜서 간호사 채용·온보딩과 운영 SOP를 구축했습니다."],"result":["서비스 등록률 40% → 60%(+20%p).","상담 처리량 90건/일 → 200건/일(약 2.2배)."],"metrics":[["40% → 60%","서비스 등록률"],["90 → 200건/일","상담 처리량"]],"decisions":[["가입 시 효용 불명확","간호사 상담 도입"],["전화 채널 한계","다채널 확장"],["품질·인력 확장 문제","템플릿·SOP·온보딩"]],"flow":["서비스 설계","채널 확대","채용·교육","운영 지표 확인"]},{"problem":["의료진이 제품의 가치를 실제 진료 흐름에 연결해 이해할 수 있는 자료와 소통이 필요했습니다."],"hypothesis":["의료진의 요구를 파악해 임상적 활용 맥락에 맞는 제품 설명과 교육자료를 제공하면 협력 논의를 구체화할 수 있습니다."],"execution":["2·3차 의료기관 의료진을 대상으로 제품 소개와 요구사항 청취를 수행했습니다.","제품 브로슈어·교육자료 제작, 학회 지원 및 자문·협력 미팅을 진행했습니다.","현장 의견을 내부 제품·운영팀과 공유했습니다."],"result":["의료기관 협력과 제품 도입 관련 논의를 지원했습니다.","이 프로젝트 단독의 전환율·매출 성과는 확인된 수치가 없어 표시하지 않습니다."],"metrics":[],"decisions":[["임상적 활용 맥락 설명 필요","의료진 대상 자료 제작"],["현장 요구 파악 필요","미팅·자문을 통한 피드백 수집"]],"flow":["현장 요구 파악","자료 제작","제품 소개·교육","내부 공유"]},{"problem":["AI 체외진단 제품의 개발·임상 검증에는 부서 간 일정·요구사항·변경 이력의 조율이 필요했습니다."],"hypothesis":["개발 이슈와 변경사항을 체계적으로 관리하면 부서 간 의사결정과 검증 준비의 일관성을 높일 수 있습니다."],"execution":["R&D 개발 일정·요구사항·이슈·리스크를 추적했습니다.","변경관리와 개발 문서를 정리하고 임상기관·IRB 관련 절차를 조율했습니다."],"result":["개발 및 검증 단계의 프로젝트 관리 체계를 지원했습니다.","검증 성과의 정량 수치는 별도 확인이 필요합니다."],"metrics":[],"decisions":[["부서 간 정보 분산","일정·이슈 통합 관리"],["변경 이력 추적 필요","변경관리·문서화"]],"flow":["요구사항 확인","일정·리스크 관리","변경관리","검증 조율"]},{"problem":["르완다 현지 제품 검증을 위해 의료·정부·규제 이해관계자 간 제품 이해와 평가 일정 조율이 필요했습니다."],"hypothesis":["현지 관계자에게 제품의 활용 맥락을 명확히 전달하고 평가 과정을 조율하면 검증 진행을 지원할 수 있습니다."],"execution":["현지 의료·정부 관계자 대상 제품 소개 및 질의응답을 지원했습니다.","현장 평가와 유관기관 커뮤니케이션을 조율했습니다."],"result":["현지 제품 평가와 후속 도입 가능성 논의를 지원했습니다.","도입 확정 또는 임상적 성능 입증으로 표현하지 않습니다."],"metrics":[],"decisions":[["이해관계자 간 정보 차이","대상별 제품 설명·소통"],["현지 검증 운영 필요","현장 평가 조율"]],"flow":["현지 요구 확인","제품 소개","현장 평가","후속 논의"]},{"problem":["상담 품질 점검을 운영자가 수작업으로 진행해 건당 평균 30분 이상 소요됐고 확장에 한계가 있었습니다.","피드백 방식이 표준화되지 않아 운영자별 편차가 발생했으며 교육·재사용할 상담 데이터도 부족했습니다."],"hypothesis":["상담 음성을 구조화된 텍스트로 변환하고 LLM 평가 템플릿을 적용하면 품질 점검 시간을 줄이면서 평가 일관성을 높일 수 있습니다.","정형화된 피드백 리포트는 신규 상담사 교육 자료로도 활용할 수 있습니다."],"execution":["상담 수집(채널톡) → 네이버 클로바 STT → 대화록 통합 → LLM 기반 요약·평가 → 자동 저장의 전체 자동화 흐름을 설계했습니다.","상담 요약·개선점·이슈 카테고리를 포함한 표준 피드백 템플릿을 만들었습니다.","운영팀이 별도 개입 없이 활용할 수 있도록 개발팀과 실행 구조를 설계했습니다."],"result":["상담 피드백 작성 시간 30분 → 5분(약 83% 단축).","평가 기준을 표준화하고 반복 이슈·리스크 유형을 모니터링할 수 있는 기반을 마련했습니다.","상담 품질 데이터를 신규 상담사 교육에 활용할 수 있도록 구조화했습니다."],"metrics":[["30분 → 5분","상담 피드백 작성 시간"],["약 83%","작성 시간 단축"]],"decisions":[["수작업 검토의 시간 부담","STT·LLM 자동화"],["운영자별 평가 편차","표준 피드백 템플릿"],["데이터 재사용 어려움","자동 기록·교육 활용"]],"flow":["상담 수집","Clova STT","LLM 요약·평가","자동 저장"]}];
 const detail = document.querySelector('#project-detail');
 if (detail) {
   const id = Number(new URLSearchParams(location.search).get('id'));
-  const project = Number.isInteger(id) ? projects[id - 1] : null;
-  const back = document.createElement('a'); back.className = 'back-link'; back.href = 'work.html'; back.textContent = '← 전체 프로젝트'; detail.append(back);
-  if (project) {
-    document.title = `${project[2]} | 최예린 · Yelin Choi`;
-    for (const [tag, className, text] of [['p','eyebrow',project[0]],['h1','',project[2]],['p','period',project[1]],['p','detail-lead',project[3]]]) {
-      const el = document.createElement(tag); el.className = className; el.textContent = text; detail.append(el);
+  const project = Number.isInteger(id) ? projects[id-1] : null;
+  const element = (tag, className, content) => { const node=document.createElement(tag); if(className)node.className=className; if(content!==undefined)node.textContent=content; return node; };
+  detail.append(element('a','back-link','← 전체 프로젝트'));
+  detail.querySelector('.back-link').href='work.html';
+  if (!project) {
+    detail.append(element('h1','','프로젝트를 찾을 수 없습니다.'));
+  } else {
+    const data=cases[id-1];
+    document.title=project[2]+' | 최예린 · Yelin Choi';
+    detail.append(element('p','eyebrow',project[0]),element('h1','',project[2]),element('p','period',project[1]),element('p','detail-lead',project[3]));
+    if(data.metrics.length){
+      const metrics=element('div','case-metrics');
+      data.metrics.forEach(([value,label])=>{const box=element('div','case-metric');box.append(element('strong','',value),element('span','',label));metrics.append(box);});
+      detail.append(metrics);
     }
-    if (id === 2) {
-      const sections = [
-        ['1. 프로젝트 소개', '서비스 가입 직후 사용자가 가치를 체감하기 어렵다는 문제를 해결하기 위해, 복잡한 의무기록을 환자가 이해하기 쉬운 언어와 치료 여정으로 정리하는 AI 요약 서비스를 기획했습니다.\n\n소속: NEED  |  기간: 2024.11–2025.03\n담당: 사용자 리서치, 제품 기획, UX 설계, MVP 제작 및 운영'],
-        ['2. 문제 정의', '기존 서비스는 가입 직후 사용자가 체감할 수 있는 효용이 부족해 등록 전환율이 정체되어 있었습니다. 한편 암 환자는 전문용어가 많은 진단명·검사 결과·치료 이력을 이해하기 어려웠습니다.\n\n핵심 문제: 환자에게 필요한 정보가 이해하기 어려운 형태로 제공되었고, 서비스의 가치도 가입 과정에서 충분히 전달되지 못했습니다.\n\n가설: 환자가 자신의 의무기록을 등록한 뒤 이해하기 쉬운 맞춤형 요약본과 치료 타임라인을 받으면 서비스의 가치를 빠르게 체감하고 등록 전환율이 개선될 것이다.'],
-        ['3. 핵심 의사결정', '환자가 진단명과 검사 결과를 이해하기 어려움 → 전문용어를 환자 친화적인 언어로 풀어 설명하는 요약 구조 설계\n\n진단부터 치료까지의 흐름을 파악하기 어려움 → 치료 여정을 타임라인으로 정리\n\n가입 직후 체감할 효용이 부족함 → 의무기록 등록 후 맞춤형 PDF 요약본 제공\n\n의료정보 제공에 법적 검토가 필요함 → 법무법인 검토를 통해 의료법 관련 위험 확인'],
-        ['4. 실행 및 검증', '암 환자 커뮤니티·논문·유사 서비스 조사로 사용자 불편을 파악했습니다. 환자 10명과 의사 10명을 대면 인터뷰해 요약본에 포함할 핵심 정보를 정의하고 PRD를 작성했습니다.\n\nVercel AI 기반으로 핵심 기능의 MVP를 직접 제작하고, 환자 친화적인 PDF 요약본 템플릿을 설계했습니다. 사용자 500명에게 요약본을 제공하고 피드백을 수집해 인앱 기능화를 위한 개선 방향을 검토했습니다.'],
-        ['5. 성과', '서비스 등록 전환율 +5%p 개선 (이전 3개월 대비)\n\n사용자 500명에게 PDF 요약본을 제공했고, 검사 결과를 이전보다 쉽게 이해할 수 있었다는 긍정적인 피드백을 확인했습니다. 사용자 문제를 리서치로 발견하고 MVP로 구현해 실제 사용자에게 제공한 뒤 전환율 지표로 결과를 확인한 프로젝트입니다.']
-      ];
-      visualSection(id, sections, detail);
-      const artifacts = document.createElement('section'); artifacts.className = 'detail-section';
-      const heading = document.createElement('h2'); heading.textContent = '실제 작업물'; artifacts.append(heading);
-      const note = document.createElement('p'); note.textContent = '① Vercel AI 기반 의무기록 요약 MVP 화면  ② 사용자에게 제공한 PDF 요약본 예시. 공개 가능한 비식별 자료 확인 후 추가 예정입니다.'; artifacts.append(note); detail.append(artifacts);
-    } else if (id === 3 || id === 7) {
-      const sections = id === 7 ? [
-        ['1. 프로젝트 소개', '상담 품질관리 업무를 자동화하기 위해 음성 텍스트 변환(STT)과 대규모 언어모델(LLM)을 활용한 AI Agent 워크플로를 설계했습니다.\\n\\n소속: NEED | 기간: 2025.04–2025.06 | 담당: 서비스 기획·운영'],
-        ['2. 문제 정의', '상담 품질관리를 운영자가 직접 수행해 건당 평균 30분 이상 소요되었고, 운영자마다 피드백 기준이 달랐습니다. 신규 상담사 교육에 활용할 표준 자료도 부족했습니다.'],
-        ['3. 가설과 핵심 결정', '상담 음성을 텍스트로 변환하고 LLM 기반 요약·평가 템플릿을 적용하면 품질관리 시간을 줄이면서 일관된 피드백을 제공할 수 있다고 가설을 세웠습니다.\\n\\n상담 요약·개선점·카테고리 분류를 포함하는 표준 피드백 템플릿을 설계하고, 신규 상담사 교육에도 활용할 수 있도록 구조화했습니다.'],
-        ['4. 실행', 'Channel.io API → Clova STT → Transcript Merge → AWS Bedrock LLM → Excel 자동 기록으로 이어지는 워크플로를 설계했습니다. 운영팀이 즉시 활용할 수 있는 상담 피드백 자동화 프로세스를 구현했습니다.'],
-        ['5. 성과', '상담 피드백 작성 시간 30분 → 5분(약 83% 단축). 운영자 간 피드백 편차를 줄일 수 있는 표준화된 품질관리 체계를 마련하고, 자동화 리포트를 규제·리스크 모니터링 및 신규 상담사 온보딩 자료로 활용할 수 있도록 했습니다.']
-      ] : [
-        ['1. 프로젝트 소개', '환자가 서비스에 가입한 뒤 실제 가치를 체감할 수 있도록 간호사 상담 서비스를 기획하고, 상담 채널·콘텐츠·인력 운영 구조를 설계했습니다.\\n\\n소속: NEED | 기간: 2024.06–2025.05 | 담당: 서비스 기획·운영'],
-        ['2. 문제 정의', '서비스 등록 절차에서 얻는 가치가 명확하지 않아 등록률이 약 40%에 머물렀습니다. 전화 중심 상담은 접근성과 확장성이 낮았고, 표준 품질관리 기준과 외부 인력 운영 모델이 필요했습니다.'],
-        ['3. 가설과 핵심 결정', '간호사 상담 서비스를 도입하면 사용자가 체감하는 가치와 등록률을 높일 수 있다고 판단했습니다. 앱·문자·카카오톡으로 상담 채널을 확장하고, 치료 단계·암종별 템플릿으로 상담 품질을 표준화했습니다. 프리랜서 간호사 운영 모델을 도입해 처리 용량을 확장했습니다.'],
-        ['4. 실행', '간호사 상담 서비스와 다채널 상담 흐름을 기획·운영했습니다. 상담 시나리오·사용자 세그먼트별 템플릿·스토리보드를 제작하고, 프리랜서 간호사 채용·온보딩 프로세스와 운영 SOP를 수립했습니다.'],
-        ['5. 성과', '서비스 등록률 40% → 60%(20%p 개선). 상담 처리량 90건/일 → 200건/일(약 2.2배). 전화 외 앱·문자·카카오톡으로 상담 접근성을 확대하고, 일관된 상담 운영 체계를 마련했습니다.']
-      ];
-      visualSection(id, sections, detail);
-    } else {
-    for (const [title,text] of [['담당 업무 및 기여',project[5]],['주요 성과',project[4]]]) {
-      const section = document.createElement('section'); section.className = 'detail-section';
-      const h = document.createElement('h2'); h.textContent = title; const p = document.createElement('p'); p.textContent = text; section.append(h,p); detail.append(section);
+    const addSection=(title,items)=>{
+      const section=element('section','detail-section');
+      section.append(element('h2','',title));
+      const ul=element('ul','case-bullets');
+      items.forEach(item=>ul.append(element('li','',item)));
+      section.append(ul);detail.append(section);
+    };
+    addSection('문제 정의',data.problem);
+    addSection('가설',data.hypothesis);
+    addSection('실행',data.execution);
+    const decision=element('div','decision-panel');
+    decision.append(element('h3','','문제와 제품 결정'));
+    data.decisions.forEach(([problem,solution])=>{const row=element('div','decision-row');row.append(element('span','',problem),element('span','',solution));decision.append(row);});
+    detail.append(decision);
+    const flow=element('div','flow-panel');flow.append(element('h3','','실행 흐름'));
+    const steps=element('ol','case-flow');data.flow.forEach(step=>steps.append(element('li','',step)));flow.append(steps);detail.append(flow);
+    addSection('결과 및 성과',data.result);
+    if(id===2){
+      const artifacts=element('section','detail-section');artifacts.append(element('h2','','실제 작업물'),element('p','','MVP 화면 및 PDF 요약본 예시: 비식별·공개 가능 자료 확인 후 추가 예정'));detail.append(artifacts);
     }
-    }
-    const note = document.createElement('p'); note.className = 'detail-note'; note.textContent = '수치는 실제 프로젝트 또는 팀 성과이며, 개인 단독 성과가 아닙니다. 공개 가능한 프로젝트 개요만 소개합니다.'; detail.append(note);
-    const actions = document.createElement('div'); actions.className = 'actions';
-    const next = document.createElement('a'); next.className = 'button'; next.href = `project.html?id=${id % projects.length + 1}`; next.textContent = '다음 프로젝트 →';
-    const contact = document.createElement('a'); contact.className = 'button primary'; contact.href = 'mailto:ajh02060@naver.com'; contact.textContent = '프로젝트 문의하기'; actions.append(next,contact); detail.append(actions);
-  } else { const h = document.createElement('h1'); h.textContent = '프로젝트를 찾을 수 없습니다.'; detail.append(h); }
+    detail.append(element('p','detail-note','정량 성과는 해당 프로젝트의 확인된 범위로 한정하며, 개인 단독 성과로 해석하지 않습니다.'));
+    const actions=element('div','actions');
+    const next=element('a','button','다음 프로젝트 →');next.href='project.html?id='+((id%projects.length)+1);
+    const contact=element('a','button primary','프로젝트 문의하기');contact.href='mailto:ajh02060@naver.com';
+    actions.append(next,contact);detail.append(actions);
+  }
 }
+
 const copy = document.querySelector('#copy-email');
 if (copy) copy.addEventListener('click', async () => {
   const status = document.querySelector('#copy-status');
