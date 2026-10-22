@@ -338,8 +338,25 @@ if (detail) {
 const copy = document.querySelector('#copy-email');
 if (copy) copy.addEventListener('click', async () => {
   const status = document.querySelector('#copy-status');
-  try { await navigator.clipboard.writeText('ajh02060@naver.com'); status.textContent = '이메일을 복사했습니다.'; }
-  catch { status.textContent = '복사하지 못했습니다. 위 이메일 주소를 선택해 복사해 주세요.'; }
+  const address = 'ajh02060@naver.com';
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(address);
+    } else {
+      const input = document.createElement('textarea');
+      input.value = address;
+      input.style.position = 'fixed';
+      input.style.opacity = '0';
+      document.body.append(input);
+      input.select();
+      const success = document.execCommand('copy');
+      input.remove();
+      if (!success) throw new Error('Copy unavailable');
+    }
+    status.textContent = '이메일 주소를 복사했습니다.';
+  } catch {
+    status.textContent = '복사할 수 없습니다. 이메일 주소를 직접 선택해 주세요.';
+  }
 });
 const currentPage = location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.site-header nav a').forEach(a => { if (a.getAttribute('href') === currentPage) a.setAttribute('aria-current','page'); });
