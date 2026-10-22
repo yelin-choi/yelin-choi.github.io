@@ -428,3 +428,23 @@ body:not(.experience-reference-body)>main,
   .hero-editorial .actions{gap:10px}
   .hero-editorial .actions .button{font-size:13px;padding:10px 13px;min-height:45px}
 }
+
+/* Shared horizontal guide: header divider, nav and page content use one container. */
+:root{--site-shell-width:1200px;--site-shell-gutter:80px}
+.site-header{
+  width:100%;
+  max-width:var(--site-shell-width);
+  padding-inline:var(--site-shell-gutter);
+  margin-inline:auto;
+}
+body:not(.experience-reference-body)>main,
+.experience-reference-body>main.experience-reference-main{
+  max-width:var(--site-shell-width);
+  padding-inline:var(--site-shell-gutter);
+}
+@media(max-width:809px){
+  :root{--site-shell-gutter:24px}
+  .site-header{padding-inline:var(--site-shell-gutter)}
+  body:not(.experience-reference-body)>main,
+  .experience-reference-body>main.experience-reference-main{padding-inline:var(--site-shell-gutter)}
+}
