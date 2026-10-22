@@ -162,3 +162,23 @@
 .experience-reference-body{background:var(--paper);color:var(--ink);font-family:'Apple SD Gothic Neo',Arial,'Malgun Gothic',sans-serif}
 .experience-reference-body .site-header{background:transparent}
 .experience-reference .reference-job>p a{color:inherit}
+
+/* Home Contact: charcoal two-column layout with native email and LinkedIn actions */
+.contact.contact-redesign{background:#353632;color:#F7F6F2;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(240px,.8fr);align-items:center;gap:64px;margin:80px -80px 0;padding:76px 80px 88px;border-radius:0}
+.contact-redesign .contact-eyebrow{color:#B7BDB2;font-size:11px;letter-spacing:.13em;line-height:1.5;margin:0 0 20px}
+.contact-redesign h2{color:#F7F6F2;font-size:clamp(25px,3vw,34px);line-height:1.4;margin:0 0 23px}
+.contact-redesign .contact-description{color:#D0D1CA;font-size:15px;line-height:1.9}
+.contact-redesign .contact-methods{display:flex;flex-direction:column;align-items:stretch;gap:23px}
+.contact-redesign .contact-email{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.contact-redesign .contact-action{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;width:100%;min-height:52px;padding:12px 21px;border-radius:999px;font-size:14px;font-weight:600;line-height:1.5;text-decoration:none;transition:background .2s ease,color .2s ease,border-color .2s ease}
+.contact-redesign .contact-action-primary{background:#F7F6F2;color:#353632;border:1px solid #F7F6F2}
+.contact-redesign .contact-action-primary:hover{background:#E5E5DF;border-color:#E5E5DF}
+.contact-redesign .contact-action-outline{background:transparent;color:#F7F6F2;border:1px solid #92968D}
+.contact-redesign .contact-action-outline:hover{background:#494B45;border-color:#D0D1CA}
+.contact-redesign .contact-arrow{display:inline-block;transition:transform .2s ease}
+.contact-redesign .contact-action:hover .contact-arrow{transform:translate(3px,-3px)}
+.contact-redesign .contact-email-address{background:none;border:0;padding:0;color:#B7BDB2;font:inherit;font-size:12px;line-height:1.6;text-align:left;cursor:copy;text-decoration:underline;text-underline-offset:3px}
+.contact-redesign .contact-email-address:hover{color:#F7F6F2}
+.contact-redesign .contact-copy-status{color:#B7BDB2;font-size:11px;line-height:1.5;min-height:0}
+@media(max-width:1199px){.contact.contact-redesign{margin-left:-40px;margin-right:-40px;padding:65px 40px;gap:40px}}
+@media(max-width:809px){.contact.contact-redesign{grid-template-columns:1fr;gap:34px;margin:64px -24px 0;padding:56px 24px 70px}.contact-redesign h2{font-size:26px}.contact-redesign .contact-description{font-size:14px}.contact-redesign .contact-methods{max-width:420px;gap:20px}}
