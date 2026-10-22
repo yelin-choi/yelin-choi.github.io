@@ -111,3 +111,18 @@
   .experience-reference .reference-job h3{font-size:14px}
   .experience-reference .reference-job li{font-size:14px}
 }
+
+/* Keep breathing room below the final Skills & Languages item. */
+.experience-reference-main{padding-bottom:max(76px, 2cm)}
+@media(max-width:809px){.experience-reference-main{padding-bottom:max(76px, 2cm)}}
+
+/* Language & Tools — plain branded icons, no cards or colored backgrounds */
+.experience-reference .language-tools{margin-bottom:0}
+.experience-reference .language-tools-group{margin-top:20px}
+.experience-reference .language-tools-group h3{font-size:14px;font-weight:700;line-height:1.5;letter-spacing:0;margin:0 0 10px}
+.experience-reference .language-tools-group p{font-size:13.5px;margin:0}
+.experience-reference .brand-tools{display:flex;flex-wrap:wrap;align-items:flex-start;gap:22px 18px;padding:0;margin:8px 0 0;list-style:none}
+.experience-reference .brand-tools .brand-tool{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:7px;width:62px;margin:0;padding:0;list-style:none;text-align:center}
+.experience-reference .brand-tool img{display:block;width:32px;height:32px;object-fit:contain}
+.experience-reference .brand-tool span{font-size:11px;line-height:1.4;font-weight:400;white-space:nowrap}
+@media(max-width:809px){.experience-reference .brand-tools{gap:20px 14px}.experience-reference .brand-tools .brand-tool{width:58px}.experience-reference .brand-tool span{font-size:11px}}
