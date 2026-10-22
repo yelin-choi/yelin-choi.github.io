@@ -142,3 +142,10 @@
   .experience-reference .brand-tools{flex:1;min-width:0;gap:14px 9px;margin:0}
   .experience-reference .brand-tools .brand-tool{width:44px}
 }
+
+/* Slightly smaller tool logos and captions */
+.experience-reference .brand-tools .brand-tool{width:38px;gap:4px}
+.experience-reference .brand-tool img{width:20px;height:20px}
+.experience-reference .brand-tool span{font-size:9px}
+@media(min-width:810px){.experience-reference .brand-tools{gap:9px}}
+@media(max-width:809px){.experience-reference .brand-tools .brand-tool{width:38px}}
